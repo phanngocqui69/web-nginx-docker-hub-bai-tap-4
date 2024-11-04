@@ -68,10 +68,9 @@ pipeline {
                         sh '''
                             #!/bin/bash
                             server='192.168.84.154'
-                                def SSH_KEY_PATH = '/home/lee/.ssh/private_key' // Đặt đường dẫn đến tệp khóa
-                                def SSH_USER = 'lee' // Tên người dùng SSH
-                                echo "Deploying to server: $server"
-                                echo "SSH Key Path: $SSH_KEY_PATH"
+                            SSH_KEY_PATH = '/home/lee/.ssh/private_key' // Đặt đường dẫn đến tệp khóa
+                            SSH_USER = 'lee' // Tên người dùng SSH
+                            echo "Deploying to server: $server"
                             
                                 echo "Deploying to server: $server"
                                 ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker pull ${IMAGE_NAME}:${TAG}"
