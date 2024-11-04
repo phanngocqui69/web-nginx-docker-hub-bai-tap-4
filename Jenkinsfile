@@ -68,8 +68,9 @@ pipeline {
                         sh '''
                             #!/bin/bash
                             server='192.168.84.154'
+                            SSH_KEY_PATH='~/.ssh/id_rsa'
                                 echo "Deploying to server: $server"
-                                echo "Show duong dan ssh key: ${SSH_KEY_PATH}
+                                echo "Show duong dan ssh key: ${SSH_KEY_PATH}"
                                 ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker pull ${IMAGE_NAME}:${TAG}"
                                 ssh -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker stop ${DOCKER_NAME} || true"
                                 ssh -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker rm ${DOCKER_NAME} || true"
