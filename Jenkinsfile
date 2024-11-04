@@ -68,9 +68,6 @@ pipeline {
                         sh '''
                             #!/bin/bash
                             server='192.168.84.154'
-                            $SSH_KEY_PATH = '/home/lee/.ssh/private_key'
-                            echo "Deploying to server: $server"
-                            
                                 echo "Deploying to server: $server"
                                 ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker pull ${IMAGE_NAME}:${TAG}"
                                 ssh -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker stop ${DOCKER_NAME} || true"
