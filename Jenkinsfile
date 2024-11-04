@@ -37,7 +37,7 @@ pipeline {
         stage('Push Image to Docker Hub') {
             steps {
                 echo 'Push Docker image...'
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-01', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh 'docker push ${IMAGE_NAME}:${TAG}'
             }
@@ -61,7 +61,7 @@ pipeline {
         }
         stage('Deploy to Servers') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-deploy-04', keyFileVariable: 'SSH_KEY_PATH')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-deploy', keyFileVariable: 'SSH_KEY_PATH')]) {
                 script {
                     // Loop through each server and deploy the Docker container
                 
