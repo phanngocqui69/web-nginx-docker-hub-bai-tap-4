@@ -68,8 +68,7 @@ pipeline {
                         sh '''
                             #!/bin/bash
                             server='192.168.84.154'
-                            SSH_KEY_PATH = '/home/lee/.ssh/private_key' // Đặt đường dẫn đến tệp khóa
-                            SSH_USER = 'lee' // Tên người dùng SSH
+                            $SSH_KEY_PATH = '/home/lee/.ssh/private_key'
                             echo "Deploying to server: $server"
                             
                                 echo "Deploying to server: $server"
