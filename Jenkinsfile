@@ -61,7 +61,7 @@ pipeline {
         }
         stage('Deploy to Servers') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-deploy-03', keyFileVariable: 'SSH_KEY_PATH')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-deploy-04', keyFileVariable: 'SSH_KEY_PATH')]) {
                 script {
                     // Loop through each server and deploy the Docker container
                 
