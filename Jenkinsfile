@@ -69,7 +69,8 @@ pipeline {
                             #!/bin/bash
                             server='192.168.84.154'
                                 echo "Deploying to server: $server"
-                                ssh -o StrictHostKeyChecking=no ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker pull ${IMAGE_NAME}:${TAG}"
+                                echo "SSH Key Path: ${SSH_KEY_PATH}"
+                                ssh -o StrictHostKeyChecking=no -i ${SSHd_KEY_PATH} ${SSH_USER}@$server "sudo docker pull ${IMAGE_NAME}:${TAG}"
                                 ssh -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker stop ${DOCKER_NAME} || true"
                                 ssh -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker rm ${DOCKER_NAME} || true"
                                 ssh -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker run -d --name ${DOCKER_NAME} -p 8901:80 ${IMAGE_NAME}:${TAG}"
