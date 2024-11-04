@@ -10,7 +10,7 @@ pipeline {
         VERSION = "1.0"
         TAG = "${VERSION}.${env.BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKER_ENDPOINT}/${DOCKER_NAME}"
-        SSH_USER = "admin01"
+        SSH_USER = "lee"
         }
     stages {
         stage('Clone Repository') {
