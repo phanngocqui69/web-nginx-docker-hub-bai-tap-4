@@ -61,13 +61,13 @@ pipeline {
         }
         stage('Deploy to Servers') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-deploy-pc01', keyFileVariable: 'SSH_KEY_PATH')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-deploy', keyFileVariable: 'SSH_KEY_PATH')]) {
                 script {
                     // Loop through each server and deploy the Docker container
                 
                         sh '''
                             #!/bin/bash
-                            server='192.168.84.138'
+                            server='192.168.84.154'
                                 echo "Deploying to server: $server"
                                 ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker pull ${IMAGE_NAME}:${TAG}"
                                 ssh -i ${SSH_KEY_PATH} ${SSH_USER}@$server "sudo docker stop ${DOCKER_NAME} || true"
